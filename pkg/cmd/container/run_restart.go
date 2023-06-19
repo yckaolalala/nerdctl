@@ -82,5 +82,5 @@ func UpdateContainerRestartPolicyLabel(ctx context.Context, client *containerd.C
 	if err != nil {
 		return err
 	}
-	return container.Update(ctx, restart.WithPolicy(policy))
+	return container.Update(ctx, restart.WithPolicy(policy), restart.WithStatus(containerd.Running))
 }
