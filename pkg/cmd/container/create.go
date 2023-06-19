@@ -145,6 +145,12 @@ func Create(ctx context.Context, client *containerd.Client, args []string, netMa
 	}
 
 	if options.TTY {
+		if options.Detach {
+			return nil, nil, errors.New("currently flag -t and -d cannot be specified together (FIXME)")
+		}
+	}
+
+	if options.TTY {
 		opts = append(opts, oci.WithTTY)
 	}
 
